@@ -55,7 +55,7 @@ const Logo = ({ footer = false }) => (
     </div>
     <div className="min-w-0">
       <div className="whitespace-nowrap text-xs font-black tracking-tight sm:text-base">DO MORE ATL</div>
-      <div className="whitespace-nowrap text-[8px] font-bold uppercase tracking-[.18em] text-white/42 sm:text-[9px] sm:tracking-[.2em]">Product Studio</div>
+      <div className="whitespace-nowrap text-[8px] font-bold uppercase tracking-[.18em] text-white/42 sm:text-[9px] sm:tracking-[.2em]">Independent Product Studio</div>
     </div>
   </div>
 )
@@ -90,7 +90,7 @@ export default function App() {
             We turn ideas into experiences people can <span className="bg-gradient-to-r from-violet-300 via-sky-300 to-amber-200 bg-clip-text text-transparent">use, play, and share.</span>
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-balance text-base leading-7 text-white/60 sm:mt-5 sm:text-xl sm:leading-8">
-            Do More ATL creates polished mobile games, civic tools, and digital products—from the first concept through launch.
+            Do More ATL creates original apps, games, and digital products—and partners with others to bring strong ideas from concept through launch.
           </p>
           <div className="mx-auto mt-6 grid max-w-sm gap-2.5 sm:mt-7 sm:flex sm:max-w-none sm:flex-wrap sm:justify-center sm:gap-3">
             <a href="#work" className="w-full rounded-full bg-white px-6 py-3 text-sm font-extrabold text-slate-950 transition hover:-translate-y-0.5 sm:w-auto sm:py-3.5">View Our Work</a>
@@ -126,10 +126,10 @@ export default function App() {
               <p className="min-w-0 text-[11px] font-bold uppercase leading-5 tracking-[.14em] text-sky-300 sm:text-sm sm:tracking-[.22em]">About Do More ATL</p>
             </div>
             <h2 className="max-w-3xl text-3xl font-black leading-tight tracking-[-0.045em] sm:text-5xl">Built from ideas worth exploring.</h2>
-            <p className="mt-4 max-w-3xl text-[15px] leading-7 text-white/60 sm:text-base">Do More ATL is an independent product studio creating games, apps, and digital tools. We take products from early concept through interface design, development, testing, deployment, and app-store publishing.</p>
+            <p className="mt-4 max-w-3xl text-[15px] leading-7 text-white/60 sm:text-base">Do More ATL is an independent product studio creating original games, apps, and digital tools while partnering with founders, organizations, and teams to bring new ideas to life. We take products from early strategy through interface design, development, testing, deployment, and app-store publishing.</p>
           </div>
           <div className="grid min-w-0 grid-cols-2 gap-2.5 sm:gap-3">
-            {['Product Strategy', 'Interface Design', 'Web Development', 'Mobile Publishing'].map((item) => (
+            {['Product Strategy', 'Interface Design', 'App Development', 'Launch & Publishing'].map((item) => (
               <div key={item} className="glass min-w-0 rounded-xl p-3 text-center text-xs font-extrabold leading-5 sm:rounded-2xl sm:p-4 sm:text-left sm:text-base">{item}</div>
             ))}
           </div>
@@ -142,7 +142,7 @@ export default function App() {
             <div className="min-w-0 lg:sticky lg:top-28">
               <p className="text-xs font-bold uppercase tracking-[.18em] text-white/55 sm:text-sm sm:tracking-[.22em]">Work With Us</p>
               <h2 className="mt-3 max-w-xl text-balance text-3xl font-black leading-tight tracking-[-0.05em] sm:text-5xl">Have an idea worth building?</h2>
-              <p className="mt-4 max-w-xl text-[15px] leading-6 text-white/60 sm:text-base sm:leading-7">Reach out about product collaborations, testing, development work, or any of the apps featured here.</p>
+              <p className="mt-4 max-w-xl text-[15px] leading-6 text-white/60 sm:text-base sm:leading-7">Whether you need help shaping an early concept, designing an interface, building an app, or preparing a product for launch, let’s start a conversation.</p>
               <div className="mt-6 rounded-2xl border border-white/10 bg-black/15 p-4">
                 <p className="text-xs font-bold uppercase tracking-[.16em] text-white/40">Direct email</p>
                 <a href="mailto:info@domoreatl.com" className="mt-2 inline-block break-all text-sm font-extrabold text-white hover:text-sky-200 sm:text-base">info@domoreatl.com</a>
