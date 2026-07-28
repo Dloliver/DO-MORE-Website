@@ -1,5 +1,7 @@
 import ProjectShowcase from './components/ProjectShowcase.jsx'
 
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+
 const projects = [
   {
     id: 'gridded',
@@ -13,7 +15,7 @@ const projects = [
     primaryHref: 'https://playgridded.com',
     button: 'bg-violet-400 text-slate-950 hover:bg-violet-300',
     glow: 'bg-[radial-gradient(circle_at_30%_25%,rgba(139,92,246,.22),transparent_38%),radial-gradient(circle_at_80%_80%,rgba(14,165,233,.16),transparent_34%)]',
-    images: ['/images/gridded/home.png', '/images/gridded/puzzle.png', '/images/gridded/marathon.png'],
+    images: [asset('images/gridded/home.png'), asset('images/gridded/puzzle.png'), asset('images/gridded/marathon.png')],
   },
   {
     id: 'swipethevote',
@@ -27,7 +29,7 @@ const projects = [
     primaryHref: '#',
     button: 'bg-rose-400 text-slate-950 hover:bg-rose-300',
     glow: 'bg-[radial-gradient(circle_at_25%_20%,rgba(244,63,94,.18),transparent_38%),radial-gradient(circle_at_85%_75%,rgba(59,130,246,.14),transparent_36%)]',
-    images: ['/images/swipethevote/home.png', '/images/swipethevote/question.png', '/images/swipethevote/alignment.png'],
+    images: [asset('images/swipethevote/home.png'), asset('images/swipethevote/question.png'), asset('images/swipethevote/alignment.png')],
   },
   {
     id: 'perfect5',
@@ -41,14 +43,14 @@ const projects = [
     primaryHref: '#',
     button: 'bg-amber-300 text-slate-950 hover:bg-amber-200',
     glow: 'bg-[radial-gradient(circle_at_25%_20%,rgba(250,204,21,.15),transparent_36%),radial-gradient(circle_at_85%_75%,rgba(96,165,250,.16),transparent_38%)]',
-    images: ['/images/perfect5/home.png', '/images/perfect5/build.png', '/images/perfect5/versus.png'],
+    images: [asset('images/perfect5/home.png'), asset('images/perfect5/build.png'), asset('images/perfect5/versus.png')],
   },
 ]
 
 const Logo = ({ footer = false }) => (
   <div className="flex items-center gap-3">
     <div className={`overflow-hidden rounded-xl border border-white/10 bg-black ${footer ? 'h-9 w-9' : 'h-10 w-10'} shadow-lg shadow-black/25`}>
-      <img src="/images/brand/do-more-serious.jpg" alt="Do More logo" className="h-full w-full object-cover" />
+      <img src={asset('images/brand/do-more-serious.jpg')} alt="Do More logo" className="h-full w-full object-cover" />
     </div>
     <div>
       <div className="text-sm font-black tracking-tight sm:text-base">DO MORE ATL</div>
@@ -117,7 +119,7 @@ export default function App() {
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_.8fr] lg:items-center">
           <div>
             <div className="mb-5 flex items-center gap-4">
-              <img src="/images/brand/do-more-fun.png" alt="Playful Do More logo" className="h-16 w-20 rounded-2xl bg-white object-contain p-1 shadow-xl" />
+              <img src={asset('images/brand/do-more-fun.png')} alt="Playful Do More logo" className="h-16 w-20 rounded-2xl bg-white object-contain p-1 shadow-xl" />
               <p className="text-sm font-bold uppercase tracking-[.22em] text-sky-300">About Do More ATL</p>
             </div>
             <h2 className="mt-2 max-w-3xl text-3xl font-black tracking-[-0.045em] sm:text-5xl">Built from ideas worth exploring.</h2>

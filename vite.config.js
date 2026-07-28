@@ -4,5 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/',
+
+  // Relative asset URLs work at both:
+  // https://dloliver.github.io/DO-MORE-Website/
+  // and the future https://domoreatl.com/
+  base: './',
 })
