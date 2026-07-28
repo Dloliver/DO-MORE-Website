@@ -45,3 +45,13 @@ The workflow builds the site with Vite and deploys the generated `dist` folder a
 ## Links to update
 
 In `src/App.jsx`, replace any placeholder `#` links for SwipeTheVote and Perfect 5 with their live URLs when they are ready.
+
+## Revised compact design plan
+
+- **Header:** serious Do More monogram, compact navigation, and one Explore Apps action.
+- **Hero:** reduced vertical height, one focused headline, short supporting copy, and two actions.
+- **Project index:** compact three-card jump menu for Gridded, SwipeTheVote, and Perfect 5.
+- **Project showcases:** dense two-column cards with concise copy, four feature chips, and a layered three-screen preview.
+- **About:** brief studio statement, service tiles, and the playful red/blue logo used as a secondary brand accent.
+- **Contact:** single compact call-to-action block.
+- **Brand system:** serious dark monogram is the primary logo; playful red/blue artwork is a secondary studio mark.
