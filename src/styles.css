@@ -8,9 +8,53 @@
   text-rendering: optimizeLegibility;
 }
 
-html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; min-height: 100vh; overflow-x: hidden; }
-button, a { -webkit-tap-highlight-color: transparent; }
+html {
+  width: 100%;
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+#root {
+  width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+select {
+  color-scheme: dark;
+}
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
@@ -27,6 +71,31 @@ button, a { -webkit-tap-highlight-color: transparent; }
     background-size: 34px 34px;
   }
   .image-frame {
-    box-shadow: 0 28px 80px rgba(0,0,0,.42), inset 0 0 0 1px rgba(255,255,255,.1);
+    box-shadow: 0 24px 70px rgba(0,0,0,.42), inset 0 0 0 1px rgba(255,255,255,.1);
+  }
+}
+
+@media (max-width: 420px) {
+  .soft-grid {
+    background-size: 28px 28px;
+  }
+
+  .layered-gallery {
+    min-height: 248px;
+  }
+}
+
+@media (max-width: 350px) {
+  .layered-gallery {
+    min-height: 224px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
   }
 }
