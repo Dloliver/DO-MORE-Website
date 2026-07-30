@@ -5,6 +5,8 @@ import ServicesPage from './pages/ServicesPage.jsx'
 import WorkPage from './pages/WorkPage.jsx'
 import ProjectPage from './pages/ProjectPage.jsx'
 import StrategyPage from './pages/StrategyPage.jsx'
+import StrategyConfirmedPage from './pages/StrategyConfirmedPage.jsx'
+import StrategyIntakePage from './pages/StrategyIntakePage.jsx'
 import StartPage from './pages/StartPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
@@ -18,6 +20,8 @@ export default function App() {
   if (pathname === '/') page = <HomePage />
   else if (pathname === '/services') page = <ServicesPage />
   else if (pathname === '/work') page = <WorkPage />
+  else if (pathname === '/strategy/confirmed') page = <StrategyConfirmedPage />
+  else if (pathname === '/strategy/intake') page = <StrategyIntakePage />
   else if (pathname === '/strategy') page = <StrategyPage />
   else if (pathname === '/start') page = <StartPage />
   else if (pathname === '/about') page = <AboutPage />

@@ -5,55 +5,52 @@ import { MenuIcon } from './Icons.jsx'
 
 const navItems = [
   {
-    label: 'Work',
+    label: 'Projects',
     to: '/work',
+    analytics: 'header-projects',
     matches: (pathname) => pathname.startsWith('/work'),
   },
   {
     label: 'Services',
     to: '/services',
-    matches: (pathname) => pathname === '/services',
-  },
-  {
-    label: 'Process',
-    to: '/#process',
-    matches: (pathname, hash) => pathname === '/' && hash === '#process',
+    analytics: 'header-services',
+    matches: (pathname) =>
+      pathname === '/services' || pathname.startsWith('/strategy'),
   },
   {
     label: 'About',
     to: '/about',
+    analytics: 'header-about',
     matches: (pathname) => pathname === '/about',
-  },
-  {
-    label: 'Strategy Session',
-    to: '/strategy',
-    matches: (pathname) => pathname === '/strategy',
   },
 ]
 
-const getCurrentPage = (pathname, hash) => {
+const getCurrentPage = (pathname) => {
+  if (pathname === '/') return 'Home'
   if (pathname === '/start') return 'Start Your Project'
   if (pathname === '/contact') return 'Contact'
-  if (pathname === '/') return hash === '#process' ? 'Process' : 'Home'
+  if (pathname === '/strategy') return 'Strategy Session'
+  if (pathname === '/strategy/confirmed') return 'Payment Confirmation'
+  if (pathname === '/strategy/intake') return 'Session Intake'
 
   return (
-    navItems.find((item) => item.matches(pathname, hash))?.label ||
+    navItems.find((item) => item.matches(pathname))?.label ||
     'Do More ATL'
   )
 }
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-  const { pathname, hash } = useRouter()
+  const { pathname } = useRouter()
 
   const currentPage = useMemo(
-    () => getCurrentPage(pathname, hash),
-    [pathname, hash],
+    () => getCurrentPage(pathname),
+    [pathname],
   )
 
   useEffect(() => {
     setOpen(false)
-  }, [pathname, hash])
+  }, [pathname])
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/8 bg-[#06101d]/92 backdrop-blur-xl">
@@ -62,12 +59,13 @@ export default function Header() {
 
         <nav className="hidden items-center gap-1 text-[13px] font-bold text-white/62 lg:flex">
           {navItems.map((item) => {
-            const active = item.matches(pathname, hash)
+            const active = item.matches(pathname)
 
             return (
               <Link
                 key={item.to}
                 to={item.to}
+                data-analytics={item.analytics}
                 aria-current={active ? 'page' : undefined}
                 className={`rounded-full px-3 py-2 transition hover:bg-white/[0.06] hover:text-white ${
                   active ? 'bg-white/[0.09] text-white' : ''
@@ -82,6 +80,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Link
             to="/start"
+            data-analytics="header-start-project"
             className="hidden rounded-full bg-white px-4 py-2.5 text-xs font-extrabold text-slate-950 transition hover:-translate-y-0.5 lg:inline-flex"
           >
             Start Your Project
@@ -110,6 +109,7 @@ export default function Header() {
 
           <Link
             to="/start"
+            data-analytics="mobile-current-start-project"
             className="shrink-0 text-[11px] font-extrabold text-violet-200 sm:text-xs"
           >
             Start a Project →
@@ -122,11 +122,10 @@ export default function Header() {
           <nav className="mx-auto grid max-w-7xl gap-1">
             <Link
               to="/"
-              aria-current={
-                pathname === '/' && hash !== '#process' ? 'page' : undefined
-              }
+              data-analytics="mobile-menu-home"
+              aria-current={pathname === '/' ? 'page' : undefined}
               className={`rounded-xl px-4 py-3 text-sm font-bold ${
-                pathname === '/' && hash !== '#process'
+                pathname === '/'
                   ? 'bg-white/[0.09] text-white'
                   : 'text-white/75 hover:bg-white/[0.06] hover:text-white'
               }`}
@@ -135,12 +134,13 @@ export default function Header() {
             </Link>
 
             {navItems.map((item) => {
-              const active = item.matches(pathname, hash)
+              const active = item.matches(pathname)
 
               return (
                 <Link
                   key={item.to}
                   to={item.to}
+                  data-analytics={`mobile-${item.analytics}`}
                   aria-current={active ? 'page' : undefined}
                   className={`rounded-xl px-4 py-3 text-sm font-bold ${
                     active
@@ -155,6 +155,7 @@ export default function Header() {
 
             <Link
               to="/contact"
+              data-analytics="mobile-menu-contact"
               aria-current={pathname === '/contact' ? 'page' : undefined}
               className={`rounded-xl px-4 py-3 text-sm font-bold ${
                 pathname === '/contact'
@@ -167,6 +168,7 @@ export default function Header() {
 
             <Link
               to="/start"
+              data-analytics="mobile-menu-start-project"
               className="mt-2 rounded-xl bg-white px-4 py-3 text-center text-sm font-extrabold text-slate-950"
             >
               Start Your Project
