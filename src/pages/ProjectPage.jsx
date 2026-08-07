@@ -69,8 +69,8 @@ export default function ProjectPage({ slug }) {
           <div className="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center">
             <div><h2 className="text-3xl font-black tracking-[-.045em]">Have an idea that needs this kind of product thinking?</h2><p className="mt-3 max-w-2xl text-base leading-7 text-white/58">Start with the project intake or a $100 Product Strategy Session.</p></div>
             <div className="flex flex-col gap-3">
-              <Link to="/start" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-slate-950">Start Your Project <Arrow /></Link>
-              {external && <a href={project.primaryHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-extrabold hover:bg-white/[0.06]">Visit {project.name}</a>}
+              <Link to="/start" data-analytics={`project-cta-start-${project.id}`} data-project={project.id} className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-slate-950">Start Your Project <Arrow /></Link>
+              {external && <a href={project.primaryHref} target="_blank" rel="noreferrer" data-analytics={`project-external-${project.id}`} data-project={project.id} className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-extrabold hover:bg-white/[0.06]">Visit {project.name}</a>}
             </div>
           </div>
         </div>

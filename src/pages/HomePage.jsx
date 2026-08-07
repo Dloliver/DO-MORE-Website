@@ -6,7 +6,7 @@ const paths = [
     number: '01',
     eyebrow: 'Our Products',
     title: 'See what we have built.',
-    text: 'Explore Gridded, SwipeTheVote, Perfect 5, and the product thinking behind each experience.',
+    text: 'Explore Gridded, SquadView, SwipeTheVote, Perfect 5, and the product thinking behind each experience.',
     to: '/work',
     action: 'Explore Projects',
     analytics: 'home-path-projects',

@@ -43,12 +43,12 @@ export default function ProjectShowcase({ project, reverse = false, compact = fa
 
           <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
             {externalPrimary ? (
-              <a href={project.primaryHref} target="_blank" rel="noreferrer" className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-extrabold transition hover:-translate-y-0.5 ${project.button}`}>{project.primaryLabel}<Arrow /></a>
+              <a href={project.primaryHref} target="_blank" rel="noreferrer" data-analytics={`project-external-${project.id}`} data-project={project.id} className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-extrabold transition hover:-translate-y-0.5 ${project.button}`}>{project.primaryLabel}<Arrow /></a>
             ) : (
               <Link to={project.primaryHref} className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-extrabold transition hover:-translate-y-0.5 ${project.button}`}>{project.primaryLabel}<Arrow /></Link>
             )}
             {project.primaryHref !== `/work/${project.slug}` && (
-              <Link to={`/work/${project.slug}`} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-extrabold transition hover:bg-white/10">View Case Study</Link>
+              <Link to={`/work/${project.slug}`} data-analytics={`project-case-study-${project.id}`} data-project={project.id} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-extrabold transition hover:bg-white/10">View Case Study</Link>
             )}
           </div>
         </div>
