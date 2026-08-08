@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { Link } from '../router.jsx'
+import { trackEvent } from '../analytics.js'
 import PageHero from '../components/PageHero.jsx'
 import { Arrow, Check } from '../components/Icons.jsx'
 import { CONTACT_EMAIL } from '../contactConfig.js'
@@ -19,6 +21,9 @@ const nextSteps = [
 ]
 
 export default function StrategyConfirmedPage() {
+  useEffect(() => {
+    trackEvent('strategy_checkout_return', { currency: 'USD', value: 100 })
+  }, [])
   return (
     <>
       <PageHero

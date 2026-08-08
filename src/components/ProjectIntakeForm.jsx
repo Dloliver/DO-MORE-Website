@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { trackEvent } from '../analytics.js'
 import { CONTACT_EMAIL, CONTACT_FORM_ENDPOINT } from '../contactConfig.js'
 import { useRouter } from '../router.jsx'
 
@@ -17,6 +18,13 @@ export default function ProjectIntakeForm() {
   const requestedService = new URLSearchParams(search).get('service')
   const defaultService = serviceDefaults[requestedService] || ''
   const [status, setStatus] = useState({ type: 'idle', message: '' })
+  const hasStarted = useRef(false)
+
+  const handleFormStart = () => {
+    if (hasStarted.current) return
+    hasStarted.current = true
+    trackEvent('form_start', { form_name: 'project' })
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -33,6 +41,7 @@ export default function ProjectIntakeForm() {
 
       if (!response.ok) throw new Error('Submission failed')
 
+      trackEvent('generate_lead', { form_name: 'project' })
       form.reset()
       setStatus({
         type: 'success',
@@ -50,6 +59,7 @@ export default function ProjectIntakeForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      onFocus={handleFormStart}
       className="rounded-[1.5rem] border border-white/10 bg-[#07111f]/72 p-4 shadow-2xl shadow-black/25 backdrop-blur sm:p-7"
     >
       <input type="hidden" name="formType" value="Custom project inquiry" />

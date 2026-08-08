@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { trackEvent } from '../analytics.js'
 import { CONTACT_EMAIL, CONTACT_FORM_ENDPOINT } from '../contactConfig.js'
 
 const fieldClass =
@@ -6,6 +7,13 @@ const fieldClass =
 
 export default function StrategyIntakeForm() {
   const [status, setStatus] = useState({ type: 'idle', message: '' })
+  const hasStarted = useRef(false)
+
+  const handleFormStart = () => {
+    if (hasStarted.current) return
+    hasStarted.current = true
+    trackEvent('form_start', { form_name: 'strategy' })
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -22,6 +30,7 @@ export default function StrategyIntakeForm() {
 
       if (!response.ok) throw new Error('Submission failed')
 
+      trackEvent('generate_lead', { form_name: 'strategy' })
       form.reset()
       setStatus({
         type: 'success',
@@ -39,6 +48,7 @@ export default function StrategyIntakeForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      onFocus={handleFormStart}
       className="rounded-[1.5rem] border border-white/10 bg-[#07111f]/72 p-4 shadow-2xl shadow-black/25 backdrop-blur sm:p-7"
     >
       <input

@@ -15,14 +15,14 @@ function HeroAction({ action, primary = false }) {
 
   if (action.href) {
     return (
-      <a href={action.href} className={className}>
+      <a href={action.href} data-analytics={action.analytics || (action.href?.includes("stripe") ? "hero-strategy-checkout" : "hero-external-cta")} className={className}>
         {content}
       </a>
     )
   }
 
   return (
-    <Link to={action.to} className={className}>
+    <Link to={action.to} data-analytics={action.analytics || (action.to === "/start" ? "hero-start-project" : `hero-${action.to?.replace(/^\//, "").replaceAll("/", "-") || "home"}`)} className={className}>
       {content}
     </Link>
   )

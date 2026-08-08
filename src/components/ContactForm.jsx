@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { trackEvent } from '../analytics.js'
 import { CONTACT_EMAIL, CONTACT_FORM_ENDPOINT } from '../contactConfig.js'
 
 const initialStatus = { type: 'idle', message: '' }
@@ -6,6 +7,13 @@ const fieldClass = 'mt-2 w-full rounded-xl border border-white/12 bg-[#07111f]/7
 
 export default function ContactForm() {
   const [status, setStatus] = useState(initialStatus)
+  const hasStarted = useRef(false)
+
+  const handleFormStart = () => {
+    if (hasStarted.current) return
+    hasStarted.current = true
+    trackEvent('form_start', { form_name: 'contact' })
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -16,6 +24,7 @@ export default function ContactForm() {
     try {
       const response = await fetch(CONTACT_FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
       if (!response.ok) throw new Error('Submission failed')
+      trackEvent('generate_lead', { form_name: 'contact' })
       form.reset()
       setStatus({ type: 'success', message: 'Thanks — your message has been sent.' })
     } catch {
@@ -24,7 +33,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[1.35rem] border border-white/10 bg-[#07111f]/70 p-4 text-left shadow-2xl shadow-black/20 backdrop-blur sm:p-6">
+    <form onSubmit={handleSubmit} onFocus={handleFormStart} className="rounded-[1.35rem] border border-white/10 bg-[#07111f]/70 p-4 text-left shadow-2xl shadow-black/20 backdrop-blur sm:p-6">
       <input type="hidden" name="formType" value="General contact" />
       <input type="hidden" name="subject" value="New general inquiry from domoreatl.com" />
       <div className="grid gap-4 sm:grid-cols-2">

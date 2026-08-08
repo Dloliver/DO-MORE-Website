@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { analyticsEventFromElement, initAnalytics, trackEvent, trackPageView } from './analytics.js'
 
 const RouterContext = createContext(null)
 
@@ -19,6 +20,25 @@ const currentLocation = () => ({
 export function RouterProvider({ children }) {
   readRedirect()
   const [location, setLocation] = useState(currentLocation)
+
+  useEffect(() => {
+    initAnalytics()
+  }, [])
+
+  useEffect(() => {
+    trackPageView(`${location.pathname}${location.search}`)
+  }, [location.pathname, location.search])
+
+  useEffect(() => {
+    const handleAnalyticsClick = (event) => {
+      const element = event.target.closest?.('[data-analytics]')
+      if (!element) return
+      const mapped = analyticsEventFromElement(element)
+      if (mapped) trackEvent(mapped[0], mapped[1])
+    }
+    document.addEventListener('click', handleAnalyticsClick)
+    return () => document.removeEventListener('click', handleAnalyticsClick)
+  }, [])
 
   useEffect(() => {
     const handlePopState = () => setLocation(currentLocation())
